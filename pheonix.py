@@ -119,7 +119,7 @@ class MainShell(cmd.Cmd):
 
 	#For downloading files from your server
 	def do_download(self,arg):
-		'Syntax: download [source path on server] [destination path on client]'
+		'Downloads a file via scp\nSyntax: download [source path on server] [destination path on client]'
 		if len(arg.split()) != 2:
 			print("Follow the syntax!")
 			return 0
@@ -133,7 +133,7 @@ class MainShell(cmd.Cmd):
 
 	#For downloading directories (recursively)
 	def do_download_dir(self,arg):
-		'Syntax: download_dir [source path on server] [destination path on client]'
+		'Downloads a directory via scp -r \nSyntax: download_dir [source path on server] [destination path on client]'
 		if len(arg.split()) != 2:
 			print("Follow the syntax!")
 			return 0
@@ -147,18 +147,19 @@ class MainShell(cmd.Cmd):
 
 	#For creating a directory
 	def do_mkdir(self,arg):
-		'Syntax: mkdir [directory name]'
+		'Makes directory\nSyntax: mkdir [directory name]'
 		if arg:
 			self.commandlist.append(['mkdir',arg.strip()])
 
 	#For custom commands. Adding the line directly.
 	def do_custom(self,arg):
-		'Adds the argument as given directly to the file.'
+		'Adds the argument as given directly to the file.\nSyntax: custom [linux command]'
 		if arg:
 			self.commandlist.append(['custom',arg.strip()])
 
 	#For saving sessions
 	def do_save(self,arg):
+		'Saves current project.\nSyntax: save'
 		savedata = savedata = [self.addr,self.username,self.password] + self.commandlist
 		if savedata == ['','','']:
 			sys.exit()
