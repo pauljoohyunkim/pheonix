@@ -82,16 +82,16 @@ def bashconvert(command,host_address,username,password):
         if command[0] == 'install':
             return 'sudo apt install ' + command[1] + ' -y'
         elif command[0] == 'download':
-            bashline = 'sshpass -p ' + password + ' scp ' + username + '@' + host_address + ':' + command[1] + ' ' + command[2]
+            bashline = 'sshpass -p ' + password + ' scp ' + username + '@' + host_address + ':"' + command[1] + '" "' + command[2] + '"'
             return bashline
         elif command[0] == 'mkdir':
-            return 'mkdir ' + command[1]
+            return 'mkdir "' + command[1] + '"'
         elif command[0] == 'custom':
             return command[1]
         elif command[0] == 'download_dir':
-            bashline = 'sshpass -p ' + password + ' scp -r ' + username + '@' + host_address + ':' + command[1] + ' ' + command[2]
+            bashline = 'sshpass -p ' + password + ' scp -r ' + username + '@' + host_address + ':"' + command[1] + '" "' + command[2] + '"'
             return bashline
         else:
-            pass
+            print("Unknown command.")
     else:
         print("Unknown error in the command list.")
